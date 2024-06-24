@@ -4,6 +4,7 @@ export default class PopoverGallery extends HTMLElement {
   connectedCallback(): void {
     if(this.isPopoverSupported()) {
       this.linkEls = this.querySelectorAll<HTMLAnchorElement>(":scope > a[id]");
+      this.dataset.popoverCloseAriaText = "";
 
       // Create popover with large image
       this.linkEls.forEach((linkEl) => {
@@ -14,8 +15,9 @@ export default class PopoverGallery extends HTMLElement {
             <button
               popovertarget="${linkEl.id}-popover"
               popovertargetaction="hide"
-              class="popover-gallery--button">
-              ×
+              class="popover-gallery--button"
+              ${this.dataset.popoverCloseAriaLabel ? `aria-label="${this.dataset.popoverCloseAriaLabel}"` : ""}>
+              ${this.dataset.popoverClose ?? "×"}
             </button>
             <img src="${linkEl.getAttribute("href")}" alt="${altText}">
           </div>
@@ -74,6 +76,10 @@ export default class PopoverGallery extends HTMLElement {
         -webkit-font-smoothing: inherit;
         -moz-osx-font-smoothing: inherit;
         -webkit-appearance: none;
+      }
+
+      .popover-gallery--button img {
+        display: block;
       }
 
       .popover-gallery--popover {

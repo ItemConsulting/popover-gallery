@@ -3,10 +3,18 @@ import PopoverGallery from "./index";
 
 window.customElements.define("popover-gallery", PopoverGallery);
 
+type PopoverGalleryArgs = {
+  popoverClose?: string;
+  popoverCloseAriaLabel?: string;
+}
+
 export default {
   title: 'Popover Gallery',
   render: (args): string => `
-    <popover-gallery>
+    <popover-gallery
+      data-popover-close="${args.popoverClose}"
+      data-popover-close-aria-label="${args.popoverCloseAriaLabel}">
+
       <a href="eggman.jpg" id="pg-image-1" target="_blank">
         <img src="eggman-thumb.jpg" alt="Eggman" />
       </a>
@@ -16,8 +24,11 @@ export default {
       </a>
     </popover-gallery>
     `,
-} satisfies Meta
+} satisfies Meta<PopoverGalleryArgs>
 
-export const popoverGallery: StoryObj = {
-  args: {},
+export const popoverGallery: StoryObj<PopoverGalleryArgs> = {
+  args: {
+    popoverClose: "×",
+    popoverCloseAriaLabel: "Close",
+  },
 };
