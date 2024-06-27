@@ -19,7 +19,7 @@ if (!window.customElements.get("popover-gallery")) {
 Use the custom element to wrap a set of images in links.
 
 ```html
-<popover-gallery>
+<popover-gallery data-popover-text-close="Lukk">
   <a href="image1-large.jpg" id="pg-image-1" target="_blank">
     <img src="image1-thumb.jpg" alt="" />
   </a>
