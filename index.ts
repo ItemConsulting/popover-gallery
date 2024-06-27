@@ -4,7 +4,6 @@ export default class PopoverGallery extends HTMLElement {
   connectedCallback(): void {
     if(this.isPopoverSupported()) {
       this.linkEls = this.querySelectorAll<HTMLAnchorElement>(":scope > a[id]");
-      this.dataset.popoverCloseAriaText = "";
 
       // Create popover with large image
       this.linkEls.forEach((linkEl) => {
@@ -15,11 +14,10 @@ export default class PopoverGallery extends HTMLElement {
             <button
               popovertarget="${linkEl.id}-popover"
               popovertargetaction="hide"
-              class="popover-gallery--button"
-              ${this.dataset.popoverCloseAriaLabel ? `aria-label="${this.dataset.popoverCloseAriaLabel}"` : ""}>
-              ${this.dataset.popoverClose ?? "×"}
+              class="popover-gallery--button">
+              <span class="popover-gallery--visually-hidden">${this.dataset.popoverTextClose ?? "Close"}</span>
+              <img src="${linkEl.getAttribute("href")}" alt="${altText}">
             </button>
-            <img src="${linkEl.getAttribute("href")}" alt="${altText}">
           </div>
         `);
 
@@ -30,7 +28,7 @@ export default class PopoverGallery extends HTMLElement {
       this.linkEls.forEach((linkEl) => {
         const buttonEl = this.htmlAsNode(
           `
-            <button class="popover-gallery--button" popovertarget="${linkEl.id}-popover">
+            <button class="popover-gallery--button" popovertarget="${linkEl.id}-popover" popovertargetaction="show">
               ${linkEl.innerHTML}
             </button>`);
 
@@ -78,6 +76,14 @@ export default class PopoverGallery extends HTMLElement {
         -webkit-appearance: none;
       }
 
+      [popovertargetaction="show"].popover-gallery--button {
+        cursor: zoom-in;
+      }
+
+      [popovertargetaction="hide"].popover-gallery--button {
+        cursor: zoom-out;
+      }
+
       .popover-gallery--button img {
         display: block;
       }
@@ -89,9 +95,14 @@ export default class PopoverGallery extends HTMLElement {
         border: 0;
       }
 
-      .popover-gallery--popover [popovertargetaction="hide"] {
-        float: right;
-        font-size: 3rem;
+      .popover-gallery--visually-hidden {
+        position: absolute;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
       }
 
       .popover-gallery--popover img {
