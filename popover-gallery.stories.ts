@@ -11,7 +11,7 @@ export default {
   title: 'Popover Gallery',
   render: (args): string => `
     <popover-gallery data-popover-text-close="${args.popoverTextClose}">
-      <a href="eggman.jpg" id="pg-image-1" target="_blank">
+      <a href="eggman.jpg" id="pg-image-1" target="_blank" class="flink">
         <img src="eggman-thumb.jpg" alt="Eggman" />
       </a>
 

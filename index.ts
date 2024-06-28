@@ -26,9 +26,14 @@ export default class PopoverGallery extends HTMLElement {
 
       // Replace link with popover button
       this.linkEls.forEach((linkEl) => {
+        const attrs = linkEl.getAttributeNames()
+          .filter((attrName) => !["href", "target", "class"].includes(attrName))
+          .map((attrName) => `${attrName}="${linkEl.getAttribute(attrName)}"`, "")
+          .join(" ");
+
         const buttonEl = this.htmlAsNode(
           `
-            <button class="popover-gallery--button" popovertarget="${linkEl.id}-popover" popovertargetaction="show">
+            <button class="popover-gallery--button ${linkEl.className}" ${attrs} popovertarget="${linkEl.id}-popover" popovertargetaction="show">
               ${linkEl.innerHTML}
             </button>`);
 
