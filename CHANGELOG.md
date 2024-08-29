@@ -1,5 +1,11 @@
 # @itemconsulting/popover-gallery
 
+## 0.2.0
+
+### Minor Changes
+
+- 9b026b2: Let button inherit attributes from original image link
+
 ## 0.1.0
 
 ### Minor Changes
