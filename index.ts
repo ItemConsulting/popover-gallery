@@ -1,3 +1,5 @@
+let cssIsLoaded = false;
+
 export default class PopoverGallery extends HTMLElement {
   declare linkEls: NodeListOf<HTMLAnchorElement>;
 
@@ -8,6 +10,14 @@ export default class PopoverGallery extends HTMLElement {
       // Create popover with large image
       this.linkEls.forEach((linkEl) => {
         const altText= linkEl.querySelector("img[alt]")?.getAttribute("alt") ?? "";
+        const caption = linkEl.querySelector("figcaption")?.innerHTML;
+
+        const imageMarkup = caption
+          ? `<figure>
+                <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+                <figcaption>${caption}</figcaption>
+              </figure>`
+          : `<img src="${linkEl.getAttribute("href")}" alt="${altText}">`;
 
         const popoverNode =  this.htmlAsNode(`
           <div id="${linkEl.id}-popover" class="popover-gallery--popover" popover>
@@ -16,7 +26,7 @@ export default class PopoverGallery extends HTMLElement {
               popovertargetaction="hide"
               class="popover-gallery--button">
               <span class="popover-gallery--visually-hidden">${this.dataset.popoverTextClose ?? "Close"}</span>
-              <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+              ${imageMarkup}
             </button>
           </div>
         `);
@@ -59,13 +69,13 @@ export default class PopoverGallery extends HTMLElement {
   }
 
   addStylesToPage(): void {
-    // TODO Only style once!
+    if (cssIsLoaded) {
+      return;
+    }
+    cssIsLoaded = true;
+
     // language=css
     const css: string = `
-      :root {
-
-      }
-
       .popover-gallery--button {
         border: none;
         margin: 0;
@@ -110,10 +120,34 @@ export default class PopoverGallery extends HTMLElement {
         clip-path: inset(50%);
       }
 
-      .popover-gallery--popover img {
-        display: block;
-        max-height: 100dvh;
-        max-width: 100%;
+      .popover-gallery--popover {
+        padding: 0;
+
+        img {
+          max-height: 100dvh;
+          max-width: 100vw;
+        }
+
+        figure {
+          display: flex;
+          flex-direction: column;
+          height: 100dvh;
+          width: 100vw;
+          align-items: center;
+
+          img {
+            display: block;
+            max-width: 100%;
+            max-height: 95%;
+            width: auto;
+            height: auto;
+          }
+        }
+
+        figcaption {
+          flex-shrink: 0;
+          background-color: Canvas;
+        }
       }
     `;
 
