@@ -1,5 +1,15 @@
 # @itemconsulting/popover-gallery
 
+## 0.3.0
+
+### Minor Changes
+
+- 99b0e71: Add support for figcapton in popover
+
+### Patch Changes
+
+- 9b32998: Center align popover image
+
 ## 0.2.0
 
 ### Minor Changes
