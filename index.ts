@@ -134,6 +134,7 @@ export default class PopoverGallery extends HTMLElement {
           height: 100dvh;
           width: 100vw;
           align-items: center;
+          justify-content: center;
 
           img {
             display: block;
