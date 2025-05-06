@@ -20,12 +20,12 @@
     "tsconfig.json"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.27.6",
-    "@storybook/addon-essentials": "^8.1.10",
-    "@storybook/web-components": "^8.1.10",
-    "@storybook/web-components-vite": "^8.1.10",
-    "storybook": "^8.1.10",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2"
+    "@changesets/cli": "^2.29.3",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/web-components": "^8.6.12",
+    "@storybook/web-components-vite": "^8.6.12",
+    "storybook": "^8.6.12",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
   }
 }
