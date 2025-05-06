@@ -17,7 +17,9 @@ export default class PopoverGallery extends HTMLElement {
                 <img src="${linkEl.getAttribute("href")}" alt="${altText}">
                 <figcaption>${caption}</figcaption>
               </figure>`
-          : `<img src="${linkEl.getAttribute("href")}" alt="${altText}">`;
+          : `<figure>
+              <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+            </figure>`;
 
         const popoverNode =  this.htmlAsNode(`
           <div id="${linkEl.id}-popover" class="popover-gallery--popover" popover>
