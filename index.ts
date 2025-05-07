@@ -10,8 +10,8 @@ export default class PopoverGallery extends HTMLElement {
       // Create popover with large image
       this.linkEls.forEach((linkEl) => {
         const altText= linkEl.querySelector("img[alt]")?.getAttribute("alt") ?? "";
-        const caption = linkEl.querySelector("figcaption")?.innerHTML ?
-          `<figcaption>${ linkEl.querySelector("figcaption")?.innerHTML}</figcaption>`
+        const caption = linkEl.querySelector("figcaption")?.innerHTML
+          ? `<figcaption>${ linkEl.querySelector("figcaption")?.innerHTML}</figcaption>`
           : "";
 
         const imageMarkup = `
