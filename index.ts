@@ -14,12 +14,6 @@ export default class PopoverGallery extends HTMLElement {
           ? `<figcaption>${ linkEl.querySelector("figcaption")?.innerHTML}</figcaption>`
           : "";
 
-        const imageMarkup = `
-          <figure>
-            <img src="${linkEl.getAttribute("href")}" alt="${altText}">
-            ${caption}
-          </figure>`
-
         const popoverNode =  this.htmlAsNode(`
           <div id="${linkEl.id}-popover" class="popover-gallery--popover" popover>
             <button
@@ -27,7 +21,10 @@ export default class PopoverGallery extends HTMLElement {
               popovertargetaction="hide"
               class="popover-gallery--button">
               <span class="popover-gallery--visually-hidden">${this.dataset.popoverTextClose ?? "Close"}</span>
-              ${imageMarkup}
+              <figure>
+                <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+                ${caption}
+              </figure>
             </button>
           </div>
         `);
