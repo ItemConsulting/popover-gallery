@@ -1,5 +1,11 @@
 # @itemconsulting/popover-gallery
 
+## 0.3.1
+
+### Patch Changes
+
+- 0ba2d8a: Add figure to image without caption
+
 ## 0.3.0
 
 ### Minor Changes
