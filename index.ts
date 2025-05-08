@@ -10,14 +10,9 @@ export default class PopoverGallery extends HTMLElement {
       // Create popover with large image
       this.linkEls.forEach((linkEl) => {
         const altText= linkEl.querySelector("img[alt]")?.getAttribute("alt") ?? "";
-        const caption = linkEl.querySelector("figcaption")?.innerHTML;
-
-        const imageMarkup = caption
-          ? `<figure>
-                <img src="${linkEl.getAttribute("href")}" alt="${altText}">
-                <figcaption>${caption}</figcaption>
-              </figure>`
-          : `<img src="${linkEl.getAttribute("href")}" alt="${altText}">`;
+        const caption = linkEl.querySelector("figcaption")?.innerHTML
+          ? `<figcaption>${ linkEl.querySelector("figcaption")?.innerHTML}</figcaption>`
+          : "";
 
         const popoverNode =  this.htmlAsNode(`
           <div id="${linkEl.id}-popover" class="popover-gallery--popover" popover>
@@ -26,7 +21,10 @@ export default class PopoverGallery extends HTMLElement {
               popovertargetaction="hide"
               class="popover-gallery--button">
               <span class="popover-gallery--visually-hidden">${this.dataset.popoverTextClose ?? "Close"}</span>
-              ${imageMarkup}
+              <figure>
+                <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+                ${caption}
+              </figure>
             </button>
           </div>
         `);
