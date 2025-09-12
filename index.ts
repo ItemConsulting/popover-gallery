@@ -22,7 +22,7 @@ export default class PopoverGallery extends HTMLElement {
               class="popover-gallery--button">
               <span class="popover-gallery--visually-hidden">${this.dataset.popoverTextClose ?? "Close"}</span>
               <figure>
-                <img src="${linkEl.getAttribute("href")}" alt="${altText}">
+                <img src="${linkEl.getAttribute("href")}" alt="${altText}" loading="lazy">
                 ${caption}
               </figure>
             </button>
