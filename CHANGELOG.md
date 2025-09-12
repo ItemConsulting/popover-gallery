@@ -1,5 +1,11 @@
 # @itemconsulting/popover-gallery
 
+## 0.4.0
+
+### Minor Changes
+
+- 8a4615a: Ensure that images inside popover is lazy loaded
+
 ## 0.3.1
 
 ### Patch Changes
